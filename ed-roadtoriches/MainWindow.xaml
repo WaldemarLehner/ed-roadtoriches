@@ -5,9 +5,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ed_roadtoriches"
+        xmlns:pages="clr-namespace:ed_roadtoriches.pages"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        Title="E:D Road to Riches" Height="350" Width="525" ResizeMode="CanMinimize">
+    <Controls:MetroWindow.DataContext>
+        <local:MainWindowViewModel/>
         
+    </Controls:MetroWindow.DataContext>
+
+    <Controls:MetroWindow.Resources>
+        <DataTemplate x:Key="page_mainmenu" DataType="{x:Type local:MainWindowViewModel}">
+            <pages:MainMenu_noDB />
+        </DataTemplate>
+        <DataTemplate x:Key="page_parsefromFile" DataType="{x:Type local:MainWindowViewModel}">
+            <pages:DB_parsefromFile/>
+        </DataTemplate>
+    </Controls:MetroWindow.Resources>
+    
+    <Grid x:Name="root">
+       <!-- <ContentControl x:Name="ContentController"  Content="{Binding}">
+            <ContentControl.Style>
+                <Style TargetType="{x:Type ContentControl}">
+                    <Setter Property="ContentTemplate" Value="{StaticResource page_mainmenu}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SwitchView}" Value="1">
+                            <Setter Property="ContentTemplate" Value="{StaticResource page_parsefromFile}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+
+            </ContentControl.Style>
+        </ContentControl> -->
+
+        <UserControl x:Name="contentControl"/>
     </Grid>
 </Controls:MetroWindow>
