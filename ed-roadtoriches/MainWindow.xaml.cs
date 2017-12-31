@@ -36,7 +36,7 @@ namespace ed_roadtoriches
         {
             if (CheckForDB())
             {
-                // Display Default Menu //
+                this.contentControl.Content = new pages.MainMenu();
             }
             else
             {

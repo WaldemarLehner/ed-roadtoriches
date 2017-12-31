@@ -79,6 +79,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pages\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pages\MainMenu_noDB.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -87,6 +91,9 @@
   <ItemGroup>
     <Compile Include="pages\DB_parsefromFile.xaml.cs">
       <DependentUpon>DB_parsefromFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\MainMenu_noDB.xaml.cs">
       <DependentUpon>MainMenu_noDB.xaml</DependentUpon>
