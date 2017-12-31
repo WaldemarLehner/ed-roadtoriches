@@ -75,7 +75,7 @@
                     <RowDefinition Height="9*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Grid x:Name="add_dataset_action_localfile" Cursor="Hand" Grid.Row="1" Grid.Column="1" Background="Transparent" MouseLeftButtonUp="getdatafromfile" >
+                <Grid x:Name="add_dataset_action_localfile" Cursor="Hand" Grid.Row="1" Grid.Column="1" Background="Transparent" MouseLeftButtonUp="parsefromFile"  >
                     <Border BorderBrush="#cf5a07" BorderThickness="1">
                         <Grid>
                             <Grid.RowDefinitions>

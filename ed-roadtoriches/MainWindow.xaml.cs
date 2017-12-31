@@ -26,6 +26,7 @@ namespace ed_roadtoriches
         {
             InitializeComponent();
             DisplayMainMenu();
+            ((App)Application.Current).PassReference(this);
         }
 
 
@@ -39,7 +40,7 @@ namespace ed_roadtoriches
             }
             else
             {
-                // Display Import Dialogue //
+                this.contentControl.Content = new pages.MainMenu_noDB();
             }
         }
 
@@ -65,7 +66,7 @@ namespace ed_roadtoriches
 
         public void ChangeUI<T>(T page) where T:UserControl
         {
-            this.contentControl.Content = page; 
+           contentControl.Content = page; 
         }
   
     }

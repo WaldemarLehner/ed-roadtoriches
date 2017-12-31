@@ -30,10 +30,11 @@ namespace ed_roadtoriches.pages
             
         }
 
-        private static void getdatafromfile(object sender, MouseButtonEventArgs e)
+   
+
+        private void parsefromFile(object sender, MouseButtonEventArgs e)
         {
-           
-            MainWindow.ChangeUI(new DB_parsefromFile());
+            ((App)Application.Current).ChangeUI(new pages.DB_parsefromFile());
         }
     }
 }
