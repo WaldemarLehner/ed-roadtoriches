@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\2018-Q1\Visual Studio\ed-roadtoriches\ed-roadtoriches\App.xaml
-11151548125
+41798985225
 
-91115185877
-15-1945454372
-MainWindow.xaml;
+131686252019
+16-1954516027
+MainWindow.xaml;pages\DB_parsefromFile.xaml;pages\MainMenu.xaml;pages\MainMenu_noDB.xaml;
 
-True
+False
 

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace ed_roadtoriches
 {
@@ -24,6 +25,49 @@ namespace ed_roadtoriches
         public MainWindow()
         {
             InitializeComponent();
+            DisplayMainMenu();
+            ((App)Application.Current).PassReference(this);
         }
+
+
+
+
+        void DisplayMainMenu()
+        {
+            if (CheckForDB())
+            {
+                this.contentControl.Content = new pages.MainMenu();
+            }
+            else
+            {
+                this.contentControl.Content = new pages.MainMenu_noDB();
+            }
+        }
+
+        bool CheckForDB()
+        {
+            var pathToLocal = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)+"/Waldemar_L/ed-roadtoriches/";
+            if (Directory.Exists(pathToLocal)) //Check if %localappdata%/Waldemar_L/ed-roadtoriches/ exists
+            {
+                if (File.Exists(pathToLocal + "db.sql")){
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                Directory.CreateDirectory(pathToLocal);
+                return false;
+            }
+        }
+
+        public void ChangeUI<T>(T page) where T:UserControl
+        {
+           contentControl.Content = page; 
+        }
+  
     }
 }
