@@ -14,6 +14,7 @@ namespace ed_roadtoriches
     public partial class App : Application
     {
         MainWindow window;
+        pages.DB_parsefromFile dB_ParsefromFile;
         void App_Startup(object sender, StartupEventArgs e)
         {
             window = new MainWindow();
@@ -23,11 +24,22 @@ namespace ed_roadtoriches
         {
             window = v;
         }
+        public void PassReference(pages.DB_parsefromFile v)
+        {
+            dB_ParsefromFile = v;
+        }
 
         public MainWindow GetMainWindow()
         {
             return window;
         }
+        public pages.DB_parsefromFile GetDB_ParsefromFile()
+        {
+            return dB_ParsefromFile;
+        }
+
+
+
         public void ChangeUI<T>(T page) 
         {
             window.contentControl.Content = page;

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace ed_roadtoriches.pages
 {
@@ -34,7 +35,17 @@ namespace ed_roadtoriches.pages
 
         private void parsefromFile(object sender, MouseButtonEventArgs e)
         {
-            ((App)Application.Current).ChangeUI(new pages.DB_parsefromFile());
+           
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "EDSM JSON dump (*.json)|*.json";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ((App)Application.Current).ChangeUI(new pages.DB_parsefromFile());
+                ((App)Application.Current).GetDB_ParsefromFile().testlabel.Content = openFileDialog.FileName;
+                ((App)Application.Current).GetDB_ParsefromFile().parsefromFile(openFileDialog.FileName);
+            }
+            
+            
         }
     }
 }
