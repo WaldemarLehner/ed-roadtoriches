@@ -44,12 +44,12 @@ namespace ed_roadtoriches
             }
         }
 
-        bool CheckForDB()
+        public bool CheckForDB()
         {
             var pathToLocal = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)+"/Waldemar_L/ed-roadtoriches/";
             if (Directory.Exists(pathToLocal)) //Check if %localappdata%/Waldemar_L/ed-roadtoriches/ exists
             {
-                if (File.Exists(pathToLocal + "db.sql")){
+                if (File.Exists(pathToLocal + "db.sqlite")){
                     return true;
                 }
                 else

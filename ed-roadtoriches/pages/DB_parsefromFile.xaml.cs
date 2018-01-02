@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MySql.Data;
+
 using Newtonsoft.Json;
 
 namespace ed_roadtoriches.pages
@@ -30,7 +30,7 @@ namespace ed_roadtoriches.pages
 
         public void parsefromFile(String file)
         {
-            
+            database.DBConnect dBConnect = new database.DBConnect();
         }
 
     }
