@@ -9,20 +9,20 @@ namespace ed_roadtoriches.database
     public class Body
     {
         public uint ID{get;set ;}
-        public string body { get; set; }
-        public string system { get; set; }
-        public uint dta { get; set; }
-        public uint orbitalPeriod { get; set; }
-        public byte type { get; set; }
+        public string Planet { get; set; }
+        public string System { get; set; }
+        public uint DTA { get; set; }
+        public uint OrbitalPeriod { get; set; }
+        public byte Type { get; set; }
 
         public Body(uint _id,string _system,string _body,uint _dta, uint _orbitalPeriod, byte _type)
         {
             ID = _id;
-            system = _system;
-            body = _body;
-            dta = _dta;
-            orbitalPeriod = _orbitalPeriod;
-            type = _type;
+            System = _system;
+            Planet = _body;
+            DTA = _dta;
+            OrbitalPeriod = _orbitalPeriod;
+            Type = _type;
         }
     }
 }

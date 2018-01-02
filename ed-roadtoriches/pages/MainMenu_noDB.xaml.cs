@@ -26,23 +26,25 @@ namespace ed_roadtoriches.pages
             InitializeComponent();
         }
 
-        private void downloaddataset(object sender, MouseButtonEventArgs e)
+        private void Downloaddataset(object sender, MouseButtonEventArgs e)
         {
             
         }
 
    
 
-        private void parsefromFile(object sender, MouseButtonEventArgs e)
+        private void ParsefromFile(object sender, MouseButtonEventArgs e)
         {
-           
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "EDSM JSON dump (*.json)|*.json";
+
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "EDSM JSON dump (*.json)|*.json"
+            };
             if (openFileDialog.ShowDialog() == true)
             {
                 ((App)Application.Current).ChangeUI(new pages.DB_parsefromFile());
                 ((App)Application.Current).GetDB_ParsefromFile().testlabel.Content = openFileDialog.FileName;
-                ((App)Application.Current).GetDB_ParsefromFile().parsefromFile(openFileDialog.FileName);
+                ((App)Application.Current).GetDB_ParsefromFile().ParsefromFile(openFileDialog.FileName);
             }
             
             

@@ -28,7 +28,7 @@ namespace ed_roadtoriches.pages
             ((App)Application.Current).PassReference(this);
         }
 
-        public void parsefromFile(String file)
+        public void ParsefromFile(String file)
         {
             database.DBConnect dBConnect = new database.DBConnect();
         }

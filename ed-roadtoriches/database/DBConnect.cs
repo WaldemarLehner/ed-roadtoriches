@@ -32,24 +32,74 @@ namespace ed_roadtoriches.database
             }
         
         }
-        public void AddWithQuery(String command)
+        public void AddWithQuery(String sql_query)
         {
+            connection.Open();
+            SQLiteCommand command = new SQLiteCommand(sql_query, connection);
+            connection.Close();
+        }
+        public void AddEntry(Body entry)
+        {
+            connection.Open();
+            SQLiteCommand command = new SQLiteCommand(
+                $"INSERT INTO BODIES(id,system,body,dta,type,orbitalPeriod)VALUES('{entry.ID}','{entry.System}','{entry.Planet}','{entry.DTA}','{entry.Type}','{entry.OrbitalPeriod}');", connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public void AddEntries(List<Body> entries)
+        {
+            if (entries.Count > 500) { System.Diagnostics.Debug.WriteLine("Error in DBConnect > AddEntries(): You cannot send more than 500 Entries at once"); }
+            else if (entries.Count > 40)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append("INSERT INTO BODIES(id,system,body,dta,type,orbitalPeriod) VALUES ");
+                foreach (Body entry in entries)
+                {
+                    stringBuilder.Append($"('{entry.ID}','{entry.System}','{entry.Planet}','{entry.DTA}','{entry.Type}','{entry.OrbitalPeriod}'),");
+                }
+                stringBuilder.Length--; // removing , from the String
+                stringBuilder.Append(";");
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand(stringBuilder.ToString(), connection);
+                connection.Close();
+            }
+            else
+            {
+                String sqlquery = "INSERT INTO BODIES(id,system,body,dta,type,orbitalPeriod)VALUES";
+                foreach(Body entry in entries)
+                {
+                    sqlquery += $"('{entry.ID}','{entry.System}','{entry.Planet}','{entry.DTA}','{entry.Type}','{entry.OrbitalPeriod}'),";
+                }
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand(sqlquery.Remove(sqlquery.Length - 1) + ";", connection);
+                connection.Close();
+                
+            }
+
+
+            
+
 
         }
 
-        public Int64 getEntriesCount()
+        public uint GetEntriesCount()
         {
-            return -1;
+            connection.Open();
+            SQLiteCommand command = new SQLiteCommand("select count(*) from BODIES;", connection);
+            uint entries = Convert.ToUInt32(command.ExecuteScalar());
+            connection.Close();
+            return entries;
+
         }
-        public void convertDB() {
+        public void ConvertDB() { // Changes db.sqlite.tmp into final db.sqlite
             try
             {
                 File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/Waldemar_L/ed-roadtoriches/db.sqlite");
                 File.Move((Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/Waldemar_L/ed-roadtoriches/db.sqlite.tmp"),( Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "/Waldemar_L/ed-roadtoriches/db.sqlite"));
             }
-            catch
+            catch(Exception e)
             {
-
+                System.Diagnostics.Debug.WriteLine($"Error in DBConnect.cs > ConvertDB():{e}");
             }
         }
 
