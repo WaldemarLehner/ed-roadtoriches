@@ -19,7 +19,7 @@
         <Grid x:Name="add_dataset_heading" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <Label Content="Import Dataset" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24"  />
         </Grid>
-        <Grid x:Name="add_dataset_download" Grid.Row="1" Grid.Column="0" MouseLeftButtonUp="downloaddataset" >
+        <Grid x:Name="add_dataset_download" Grid.Row="1" Grid.Column="0" MouseLeftButtonUp="Downloaddataset" >
             <Grid  >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -75,7 +75,7 @@
                     <RowDefinition Height="9*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Grid x:Name="add_dataset_action_localfile" Cursor="Hand" Grid.Row="1" Grid.Column="1" Background="Transparent" MouseLeftButtonUp="parsefromFile"  >
+                <Grid x:Name="add_dataset_action_localfile" Cursor="Hand" Grid.Row="1" Grid.Column="1" Background="Transparent" MouseLeftButtonUp="ParsefromFile"  >
                     <Border BorderBrush="#cf5a07" BorderThickness="1">
                         <Grid>
                             <Grid.RowDefinitions>

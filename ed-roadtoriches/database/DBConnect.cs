@@ -25,7 +25,7 @@ namespace ed_roadtoriches.database
                 SQLiteConnection.CreateFile(pathToDB+".tmp");
                 connection = new SQLiteConnection("Data Source=" + pathToDB + ".tmp;Version=3");
                 connection.Open();
-                String sql = "CREATE TABLE BODIES (id int not null primary key, system varchar(128),body varchar(128),dta int unsigned,type tinyint,orbitalPeriod int unsigned);";
+                String sql = "CREATE TABLE BODIES (id int not null primary key, system varchar(128),body varchar(128),dta int unsigned,type tinyint,orbitalPeriod int unsigned, coordX float, coordY float, coordZ float);";
                 SQLiteCommand command = new SQLiteCommand(sql, connection);
                 command.ExecuteNonQuery();
                 connection.Close();
@@ -42,7 +42,7 @@ namespace ed_roadtoriches.database
         {
             connection.Open();
             SQLiteCommand command = new SQLiteCommand(
-                $"INSERT INTO BODIES(id,system,body,dta,type,orbitalPeriod)VALUES('{entry.ID}','{entry.System}','{entry.Planet}','{entry.DTA}','{entry.Type}','{entry.OrbitalPeriod}');", connection);
+                $"INSERT INTO BODIES(id,system,body,dta,type,orbitalPeriod,coordX,coordY,coordZ)VALUES('{entry.ID}','{entry.System}','{entry.Planet}','{entry.DTA}','{entry.Type}','{entry.OrbitalPeriod}');", connection);
             command.ExecuteNonQuery();
             connection.Close();
         }
@@ -52,10 +52,10 @@ namespace ed_roadtoriches.database
             else if (entries.Count > 40)
             {
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append("INSERT INTO BODIES(id,system,body,dta,type,orbitalPeriod) VALUES ");
+                stringBuilder.Append("INSERT INTO BODIES(id,system,body,dta,type,orbitalPeriod,coordX,coordY,coordZ) VALUES ");
                 foreach (Body entry in entries)
                 {
-                    stringBuilder.Append($"('{entry.ID}','{entry.System}','{entry.Planet}','{entry.DTA}','{entry.Type}','{entry.OrbitalPeriod}'),");
+                    stringBuilder.Append($"('{entry.ID}','{entry.System}','{entry.Planet}','{entry.DTA}','{entry.Type}','{entry.OrbitalPeriod}','{entry.X}','{entry.Y}','{entry.Z}'),");
                 }
                 stringBuilder.Length--; // removing , from the String
                 stringBuilder.Append(";");
@@ -75,10 +75,6 @@ namespace ed_roadtoriches.database
                 connection.Close();
                 
             }
-
-
-            
-
 
         }
 
